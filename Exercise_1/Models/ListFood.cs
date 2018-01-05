@@ -7,13 +7,12 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Content.Res;
-using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.IO;
 using Newtonsoft.Json;
+using Stream = Android.Media.Stream;
 
 namespace Exercise_1.Models
 {
@@ -24,14 +23,16 @@ namespace Exercise_1.Models
 
         public ListFood()
         {
-            foods = BuildInFoods;
+            foods = ReadJson<Food>();
+        }
+        public List<T> ReadJson<T>()
+        {
+            var stream = Android.App.Application.Context.Assets.Open($"{typeof(T).Name}s.json");
+            var streamReader = new StreamReader(stream);
+            var content = streamReader.ReadToEnd();
+            return JsonConvert.DeserializeObject<List<T>>(content);
         }
 
-        private static readonly List<Food> BuildInFoods = new List<Food>()
-        {
-            new Food("Hamburger", "10$", "iamge"),
-            new Food("Chicken", "20$", "iamge")
-        };
         public int NumOfFoods => foods.Count;
         public Food this[int i] => foods[i];
     }
