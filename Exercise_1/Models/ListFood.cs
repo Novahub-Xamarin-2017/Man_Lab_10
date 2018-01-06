@@ -28,13 +28,15 @@ namespace Exercise_1.Models
         public List<T> ReadJson<T>()
         {
             var stream = Android.App.Application.Context.Assets.Open($"{typeof(T).Name}s.json");
-            var streamReader = new StreamReader(stream);
-            var content = streamReader.ReadToEnd();
-            return JsonConvert.DeserializeObject<List<T>>(content);
+            using (var streamReader = new StreamReader(stream))
+            {
+                var content = streamReader.ReadToEnd();
+                return JsonConvert.DeserializeObject<List<T>>(content);
+            }
         }
 
         public int NumOfFoods => foods.Count;
+
         public Food this[int i] => foods[i];
     }
-
 }

@@ -27,15 +27,10 @@ namespace Exercise_1.Adapter
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var foodViewHolder = holder as FoodViewHolder;
+            if (!(holder is FoodViewHolder foodViewHolder)) return;
             foodViewHolder.TextViewCost.Text = Foods[position].FoodCost;
             foodViewHolder.TextViewFood.Text = Foods[position].FoodName;
-            var encodedString = Foods[position].ImageString;
-
-            var pureBase64Encoded = encodedString.Substring(encodedString.IndexOf(",", StringComparison.Ordinal) + 1);
-            var decodedString = Base64.Decode(pureBase64Encoded, Base64.Default);
-            var bitmap = BitmapFactory.DecodeByteArray(decodedString, 0, decodedString.Length);
-            foodViewHolder.FoodImage.SetImageBitmap(bitmap);
+            foodViewHolder.FoodImage.SetImageBitmap(GetBitmapFromBase64String(Foods[position].ImageString));
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -46,5 +41,12 @@ namespace Exercise_1.Adapter
         }
 
         public override int ItemCount => Foods.NumOfFoods;
+
+        private Bitmap GetBitmapFromBase64String(string encodedString)
+        {
+            var pureBase64Encoded = encodedString.Substring(encodedString.IndexOf(",", StringComparison.Ordinal) + 1);
+            var decodedString = Base64.Decode(pureBase64Encoded, Base64Flags.Default);
+            return BitmapFactory.DecodeByteArray(decodedString, 0, decodedString.Length);
+        }
     }
 }
