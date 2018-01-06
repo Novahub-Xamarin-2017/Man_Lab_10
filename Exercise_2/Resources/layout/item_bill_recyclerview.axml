@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@color/White"
+        android:layout_margin="@dimen/marginSmall">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout1"
+            android:background="@color/White">
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:layout_width="@dimen/imageSize"
+                android:layout_height="@dimen/imageSize"
+                android:id="@+id/img"
+                android:layout_margin="@dimen/marginSmall" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout2"
+                android:layout_margin="@dimen/marginSmall">
+                <TextView
+                    android:text="Large Text"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtName"
+                    android:gravity="left"
+                    android:textColor="@color/Black" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout3"
+                    android:weightSum="7">
+                    <TextView
+                        android:text="Text"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/txtPricePerUnit"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/Black" />
+                    <TextView
+                        android:text="Text"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/txtUnit"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:textColorHighlight="@color/Black"
+                        android:textColor="@color/Black" />
+                    <TextView
+                        android:text="@string/zero"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/txtQuantity"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/Black" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
