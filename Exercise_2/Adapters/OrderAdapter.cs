@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
 using Exercise_2.Models;
 
 namespace Exercise_2.Adapters
@@ -36,8 +27,6 @@ namespace Exercise_2.Adapters
             viewHolder.Quantity.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
                 Orders[position].Quantity = Convert.ToInt32(viewHolder.Quantity.Text);
-                Log.Info("log", "value " + Orders[position].Quantity);
-                Log.Info("log", "sum " + Orders.SumOfPrices);
             };
             
             viewHolder.Image.SetImageBitmap(GetImageBitmap(Orders[position].Product.ImageString));
@@ -50,10 +39,10 @@ namespace Exercise_2.Adapters
             return new ProductViewHolder(itemView);
         }
 
-        private Bitmap GetImageBitmap(string encodedString)
+        public static Bitmap GetImageBitmap(string encodedString)
         {
             var pureBase64Encoded = encodedString.Substring(encodedString.IndexOf(",", StringComparison.Ordinal) + 1);
-            var decodedString = Base64.Decode(pureBase64Encoded, Base64.Default);
+            var decodedString = Base64.Decode(pureBase64Encoded, Base64Flags.Default);
             return BitmapFactory.DecodeByteArray(decodedString, 0, decodedString.Length);
         }
 

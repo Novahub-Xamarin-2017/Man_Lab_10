@@ -3,15 +3,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <Toolbar
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@color/material_grey_300"
+        android:minWidth="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar" />
     <TextView
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
+        android:id="@+id/txtSumPrices"
         android:layout_margin="@dimen/marginSmall" />
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/marginSmall" />
+        android:layout_margin="@dimen/marginSmall"
+        android:id="@+id/recyclerViewBill" />
 </LinearLayout>

@@ -4,8 +4,11 @@ using Android.Content;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.Widget;
+using Android.Util;
 using Exercise_2.Adapters;
 using Exercise_2.Models;
+using Java.Interop;
+using Newtonsoft.Json;
 
 namespace Exercise_2
 {
@@ -18,8 +21,8 @@ namespace Exercise_2
         [InjectOnClick(Resource.Id.btnShowBill)]
         private void StartActivityShowBill(object sender, EventArgs e)
         {
-            var showBillActivity = new Intent(this, typeof(ShowBillActicity));
-            StartActivity(showBillActivity);
+            var intent = new Intent(this, typeof(ShowBillActicity));
+            StartActivity(intent);
         }
         private RecyclerView.LayoutManager layoutManager;
         private ListOrders orders;
@@ -34,7 +37,7 @@ namespace Exercise_2
             SetActionBar(toolbar);
             layoutManager = new LinearLayoutManager(this);
             recyclerView.SetLayoutManager(layoutManager);
-            orders = new ListOrders();
+            orders = ListOrders.GetInstance;
             orderAdapter = new OrderAdapter(orders);
             recyclerView.SetAdapter(orderAdapter);
         }

@@ -14,8 +14,21 @@ using Newtonsoft.Json;
 
 namespace Exercise_2.Models
 {
-    public class ListOrders 
+    public class ListOrders
     {
+        private static ListOrders instance;
+
+        public static ListOrders GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ListOrders();
+                }
+                return instance;
+            }
+        }
         public List<Order> Orders { get; set; }
 
         private static readonly List<Order> BuildInListOrders = new List<Order>()
@@ -44,9 +57,12 @@ namespace Exercise_2.Models
             }
         };
 
-        public ListOrders()
+
+
+        private ListOrders()
         {
-            Orders = BuildInListOrders;
+            //Orders = BuildInListOrders;
+            Orders = ReadJson<Order>();
         }
 
         public List<T> ReadJson<T>()

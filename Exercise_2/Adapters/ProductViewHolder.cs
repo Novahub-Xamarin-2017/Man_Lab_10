@@ -14,7 +14,7 @@ using Exercise_2.Models;
 
 namespace Exercise_2.Adapters
 {
-    class ProductViewHolder : RecyclerView.ViewHolder
+    public class ProductViewHolder : RecyclerView.ViewHolder
     {
         [InjectView(Resource.Id.img)] public ImageView Image;
         [InjectView(Resource.Id.txtPricePerUnit)] public TextView PricePerUnit;
