@@ -191,6 +191,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\shopping.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="2018-01-09 %281%29.png" />
+    <Content Include="2018-01-09.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Compat.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Compat.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

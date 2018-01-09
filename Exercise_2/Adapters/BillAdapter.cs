@@ -15,24 +15,26 @@ using Exercise_2.Models;
 
 namespace Exercise_2.Adapters
 {
-    internal class BillAdapter : RecyclerView.Adapter
+    public class BillAdapter : RecyclerView.Adapter
     {
-        public List<Order> Orders { get; set; }
+        private List<Order> Orders { get; }
 
         public BillAdapter(List<Order> orders)
         {
             Orders = orders;
         }
+
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-
-            if (!(holder is BillItemViewHolder viewHolder)) return;
-            viewHolder.Name.Text = Orders[position].Product.Name;
-            viewHolder.Unit.Text = $"{Orders[position].Quantity} x {Orders[position].Product.Unit}";
-            viewHolder.PricePerUnit.Text =
-                $"Rs.{Orders[position].Product.PricePerUnit.ToString(CultureInfo.InvariantCulture)}";
-            viewHolder.Price.Text = $"Price: {Orders[position].Product.PricePerUnit * Orders[position].Quantity}";
-            viewHolder.Image.SetImageBitmap(OrderAdapter.GetImageBitmap(Orders[position].Product.ImageString));
+            if (holder is BillItemViewHolder viewHolder)
+            {
+                viewHolder.Name.Text = Orders[position].Product.Name;
+                viewHolder.Unit.Text = $"{Orders[position].Quantity} x {Orders[position].Product.Unit}";
+                viewHolder.PricePerUnit.Text =
+                    $"Rs.{Orders[position].Product.PricePerUnit.ToString(CultureInfo.InvariantCulture)}";
+                viewHolder.Price.Text = $"Price: {Orders[position].Product.PricePerUnit * Orders[position].Quantity}";
+                viewHolder.Image.SetImageBitmap(OrderAdapter.GetImageBitmap(Orders[position].Product.ImageString));
+            }
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

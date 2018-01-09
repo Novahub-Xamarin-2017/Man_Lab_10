@@ -24,19 +24,16 @@ namespace Exercise_2
             var intent = new Intent(this, typeof(ShowBillActicity));
             StartActivity(intent);
         }
-        private RecyclerView.LayoutManager layoutManager;
         private ListOrders orders;
         private OrderAdapter orderAdapter;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
             Cheeseknife.Inject(this);
             SetActionBar(toolbar);
-            layoutManager = new LinearLayoutManager(this);
-            recyclerView.SetLayoutManager(layoutManager);
+            recyclerView.SetLayoutManager(new LinearLayoutManager(this));
             orders = ListOrders.GetInstance;
             orderAdapter = new OrderAdapter(orders);
             recyclerView.SetAdapter(orderAdapter);
