@@ -2,14 +2,13 @@
 using System.IO;
 using System.Linq;
 using Android.App;
-using Android.Widget;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Exercise_3.Adapters;
 
 namespace Exercise_3
 {
-    [Activity(Label = "Exercise_3", MainLauncher = true)]
+    [Activity(Label = "Exercise_3")]
     public class MainActivity : Activity
     {
         [InjectView(Resource.Id.recyclerView)] private RecyclerView recyclerView;

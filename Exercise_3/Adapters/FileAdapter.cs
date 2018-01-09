@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -17,7 +12,7 @@ namespace Exercise_3.Adapters
     public class FileAdapter : RecyclerView.Adapter, IItemClickListener
     {
 
-        public List<string> Files { get; }
+        public List<string> Files { get; set; }
         private Context context;
 
         public FileAdapter(List<string> files, Context context)

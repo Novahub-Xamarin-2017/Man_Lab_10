@@ -129,6 +129,7 @@
     <Compile Include="Adapters\FileAdapter.cs" />
     <Compile Include="Adapters\ItemViewHolder.cs" />
     <Compile Include="Cheeseknife.cs" />
+    <Compile Include="FileManagerActivity.cs" />
     <Compile Include="Interfaces\IItemClickListener.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -141,6 +142,9 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\recyclerview_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\acticity_show_files.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
