@@ -1,54 +1,51 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
+using Android.App;
 using Android.Content;
-using Android.Support.V7.Widget;
+using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Exercise_3.Interfaces;
+using Java.IO;
+using Object = Java.Lang.Object;
 
 namespace Exercise_3.Adapters
 {
-    public class FileAdapter : RecyclerView.Adapter, IItemClickListener
+    class FileAdapter : BaseAdapter
     {
+        private List<string> Files { get; }
+        private Activity activity { get; }
 
-        public List<string> Files { get; set; }
-        private Context context;
-
-        public FileAdapter(List<string> files, Context context)
+        public FileAdapter(List<string> files, Activity activity)
         {
             Files = files;
-            this.context = context;
+            this.activity = activity;
         }
-
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override Object GetItem(int position)
         {
-            if (holder is ItemViewHolder viewholder)
-            {
-                viewholder.TvName.Text = Files[position];
-                viewholder.SetOnItemClickListener(this);
-            }
+            return Files[position];
         }
 
-
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+        public override long GetItemId(int position)
         {
-            var itemView = LayoutInflater.From(parent.Context)
-                .Inflate(Resource.Layout.recyclerview_item, parent, false);
-            return new ItemViewHolder(itemView);
+            return 0;
         }
 
-        public override int ItemCount => Files.Count;
-        public void OnClick(View itemView, int position, bool isLongClick)
+        public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            if (isLongClick)
-            {
-                Toast.MakeText(context, $"Long click : {Files[position]}", ToastLength.Short).Show();
-            }
-            else
-            {
-                Toast.MakeText(context, $"{Files[position]}", ToastLength.Short).Show();
-            }
+            var view = convertView ?? activity.LayoutInflater.Inflate(
+                           Resource.Layout.list_file_item, parent, false);
+            var txtName = view.FindViewById<TextView>(Resource.Id.txtName);
+            var img = view.FindViewById<ImageView>(Resource.Id.imageView);
+            var fileName = Files[position];
+            txtName.Text = fileName.Split('/').Last();
+            img.SetImageResource(new File(fileName).IsDirectory ? Resource.Drawable.folder : Resource.Drawable.file);
+            return view;
         }
+
+        public override int Count => Files.Count;
     }
 }
