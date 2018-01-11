@@ -28,7 +28,7 @@ namespace Exercise_5.Adapters
                     Subject = "CS-101 Python",
                     Exercise = "Exercise 6",
                     Lesson = "Data Structures",
-                    TimeEnd = new DateTime(2018, 1, 12),
+                    TimeEnd = new DateTime(2018, 1, 15),
                     TimeLimited = 45
                 },
                 new Task
