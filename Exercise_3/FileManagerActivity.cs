@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Exercise_3.Adapters;
@@ -17,23 +18,18 @@ namespace Exercise_3
     [Activity(Label = "FileManagerActivity", MainLauncher = true)]
     public class FileManagerActivity : ListActivity
     {
-        private string path;
+        private static readonly List<string> VideoExtensions = new List<string> {".mp3", ".mp4", ".flv", ".3gp"};
+        private static readonly List<string> ImageExtensions = new List<string> {".jpg", ".png"};
+
+        private string path = File.Separator;
+
+        private string root;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.acticity_show_files);
-
-            path = (Intent.HasExtra("path")) ? Intent.GetStringExtra("path") : "/";
-            var values = new List<string>();
-            var dir = new File(path);
-            if (dir.CanRead())
-            {
-                values.AddRange(dir.List().Select(item => path + (path.EndsWith(File.Separator) ? item : File.Separator + item)));
-            }
-            var adapter = new FileAdapter(values, this);
-#pragma warning disable 618
-            ListView.SetAdapter(adapter);
-#pragma warning restore 618
+            UpdateListView(ListView, path);
         }
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
@@ -42,19 +38,19 @@ namespace Exercise_3
             var fileName = l.Adapter.GetItem(position).ToString();
             if (new File(fileName).IsDirectory)
             {
-                var intent = new Intent(this, typeof(FileManagerActivity));
-                intent.PutExtra("path", fileName);
-                StartActivity(intent);
+                UpdateListView(l, fileName);
+                root = path;
+                path = fileName;
             }
             else
             {
-                if (fileName.EndsWith(".jpg") || fileName.EndsWith(".png"))
+                if (ImageExtensions.Contains(fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal)))) 
                 {
                     var intent = new Intent(this, typeof(DisplayImageActivity));
                     intent.PutExtra("fileImage", fileName);
                     StartActivity(intent);
                 }
-                else if (fileName.EndsWith(".mp3") || fileName.EndsWith(".mp4") || fileName.EndsWith(".flv"))
+                else if (VideoExtensions.Contains(fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal))))
                 {
                     var intent = new Intent(this, typeof(PlayVideoActivity));
                     intent.PutExtra("fileVideo", fileName);
@@ -64,6 +60,36 @@ namespace Exercise_3
                 {
                     Toast.MakeText(this, fileName, ToastLength.Short).Show();
                 }
+            }
+        }
+
+        private void UpdateListView(AbsListView listview,string filePath)
+        {
+            var values = new List<string>();
+            var dir = new File(filePath);
+            if (dir.CanRead())
+            {
+                values.AddRange(dir.List().Select(item => filePath + (filePath.EndsWith(File.Separator) ? item : File.Separator + item)));
+            }
+            var adapter = new FileAdapter(values, this);
+#pragma warning disable 618
+            listview.SetAdapter(adapter);
+#pragma warning restore 618
+            listview.DeferNotifyDataSetChanged();
+        }
+
+        public override void OnBackPressed()
+        {
+
+            if (!path.Equals(File.Separator))
+            {
+                UpdateListView(ListView, root);
+                path = root;
+                root = root.Remove(root.LastIndexOf(File.Separator, StringComparison.Ordinal));
+            }
+            else
+            {
+                Finish();
             }
         }
     }
