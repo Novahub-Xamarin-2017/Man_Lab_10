@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -11,19 +12,23 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Exercise_3.Adapters;
-using Java.IO;
+using File = Java.IO.File;
 
 namespace Exercise_3
 {
     [Activity(Label = "FileManagerActivity", MainLauncher = true)]
     public class FileManagerActivity : ListActivity
     {
-        private static readonly List<string> VideoExtensions = new List<string> {".mp3", ".mp4", ".flv", ".3gp"};
-        private static readonly List<string> ImageExtensions = new List<string> {".jpg", ".png"};
+        private readonly List<string> videoExtensions = new List<string> {".mp3", ".mp4", ".flv", ".3gp"};
+        private readonly List<string> imageExtensions = new List<string> {".jpg", ".png"};
 
         private string path = File.Separator;
 
         private string root;
+
+        private static FileAdapter adapter;
+
+        private static readonly List<string> files = new List<string>();
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -44,13 +49,13 @@ namespace Exercise_3
             }
             else
             {
-                if (ImageExtensions.Contains(fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal)))) 
+                if (imageExtensions.Contains(Path.GetExtension(fileName))) 
                 {
                     var intent = new Intent(this, typeof(DisplayImageActivity));
                     intent.PutExtra("fileImage", fileName);
                     StartActivity(intent);
                 }
-                else if (VideoExtensions.Contains(fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal))))
+                else if (videoExtensions.Contains(Path.GetExtension(fileName)))
                 {
                     var intent = new Intent(this, typeof(PlayVideoActivity));
                     intent.PutExtra("fileVideo", fileName);
@@ -63,34 +68,35 @@ namespace Exercise_3
             }
         }
 
-        private void UpdateListView(AbsListView listview,string filePath)
+        private static void UpdateListView(ListView listview,string filePath)
         {
-            var values = new List<string>();
+            files.Clear();
             var dir = new File(filePath);
             if (dir.CanRead())
             {
-                values.AddRange(dir.List().Select(item => filePath + (filePath.EndsWith(File.Separator) ? item : File.Separator + item)));
+                files.AddRange(dir.List().Select(file => Path.Combine(filePath, file)));
             }
-            var adapter = new FileAdapter(values, this);
-#pragma warning disable 618
-            listview.SetAdapter(adapter);
-#pragma warning restore 618
-            listview.DeferNotifyDataSetChanged();
+            if (listview.Adapter == null)
+            {
+                adapter = new FileAdapter(files);
+                listview.Adapter = adapter;
+            }
+            else
+            {
+                adapter.NotifyDataSetChanged();
+            }
         }
 
         public override void OnBackPressed()
         {
-
             if (!path.Equals(File.Separator))
             {
                 UpdateListView(ListView, root);
                 path = root;
-                root = root.Remove(root.LastIndexOf(File.Separator, StringComparison.Ordinal));
+                root = Path.GetPathRoot(root);
+                return;
             }
-            else
-            {
-                Finish();
-            }
+            Finish();
         }
     }
 }
