@@ -126,6 +126,7 @@
     <Compile Include="Adapters\TaskViewAdapter.cs" />
     <Compile Include="Adapters\TaskViewHolder.cs" />
     <Compile Include="Cheeseknife.cs" />
+    <Compile Include="Interfaces\IItemClickListener.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

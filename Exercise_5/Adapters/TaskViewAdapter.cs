@@ -11,15 +11,17 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Exercise_5.Interfaces;
 using Exercise_5.Models;
 
 namespace Exercise_5.Adapters
 {
-    public class TaskViewAdapter :RecyclerView.Adapter
+    public class TaskViewAdapter :RecyclerView.Adapter, IItemClickListener
     {
-        public List<Task> Tasks { get; set; }
+        public List<Task> Tasks;
+        private Context context;
 
-        public TaskViewAdapter()
+        public TaskViewAdapter(List<Task> tasks,Context context)
         {
             Tasks = new List<Task>
             {
@@ -48,35 +50,37 @@ namespace Exercise_5.Adapters
                     TimeLimited = 40
                 }
             };
+            this.context = context;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             if (!(holder is TaskViewHolder viewHolder)) return;
             var task = Tasks[position];
-            viewHolder.tvSubject.Text = task.Subject + ",";
-            viewHolder.tvExercise.Text = task.Exercise + ",";
-            viewHolder.tvLesson.Text = task.Lesson;
-            viewHolder.tvTimeEnd.Text = task.TimeEnd.ToString("d");
-            viewHolder.tvTimeLimmited.Text = task.TimeLimited + " Minutes";
+            viewHolder.TvSubject.Text = task.Subject + ",";
+            viewHolder.TvExercise.Text = task.Exercise + ",";
+            viewHolder.TvLesson.Text = task.Lesson;
+            viewHolder.TvTimeEnd.Text = task.TimeEnd.ToString("d");
+            viewHolder.TvTimeLimmited.Text = task.TimeLimited + " Minutes";
 
             var daysLeft = (task.TimeEnd - DateTime.Now).Days;
             if (daysLeft > 0)
             {
-                viewHolder.btnDaysLeft.Text = daysLeft + (daysLeft == 1 ? " day left" : " days left");
-                viewHolder.btnDaysLeft.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.warning, 0, 0, 0);
-                viewHolder.btnResume.Text = "Resume";
-                viewHolder.btnResume.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.resume, 0, 0, 0);
-                viewHolder.view.SetBackgroundColor(Color.Red);
+                viewHolder.BtnDaysLeft.Text = daysLeft + (daysLeft == 1 ? " day left" : " days left");
+                viewHolder.BtnDaysLeft.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.warning, 0, 0, 0);
+                viewHolder.BtnResume.Text = "Resume";
+                viewHolder.BtnResume.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.resume, 0, 0, 0);
+                viewHolder.View.SetBackgroundColor(Color.Red);
             }
             else
             {
-                viewHolder.btnDaysLeft.Text = "Assignment Completed";
-                viewHolder.btnDaysLeft.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.ok, 0, 0, 0);
-                viewHolder.btnResume.Text = "Report";
-                viewHolder.btnResume.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.report, 0, 0, 0);
-                viewHolder.view.SetBackgroundColor(Color.Green);
+                viewHolder.BtnDaysLeft.Text = "Assignment Completed";
+                viewHolder.BtnDaysLeft.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.ok, 0, 0, 0);
+                viewHolder.BtnResume.Text = "Report";
+                viewHolder.BtnResume.SetCompoundDrawablesWithIntrinsicBounds(Resource.Drawable.report, 0, 0, 0);
+                viewHolder.View.SetBackgroundColor(Color.Green);
             }
+            viewHolder.ItemClickListener = this;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -86,5 +90,12 @@ namespace Exercise_5.Adapters
         }
 
         public override int ItemCount => Tasks.Count;
+        public void OnClick(View itemView, int position, bool isLongClick)
+        {
+            if (isLongClick)
+                Toast.MakeText(context, "Long click" + Tasks[position].Lesson, ToastLength.Short).Show();
+            else
+                Toast.MakeText(context, "Click" + Tasks[position].Lesson, ToastLength.Short).Show();
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using Android.App;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Exercise_5.Adapters;
+using Exercise_5.Models;
 
 namespace Exercise_5
 {
@@ -20,7 +22,7 @@ namespace Exercise_5
             Cheeseknife.Inject(this);
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(this));
-            adapter = new TaskViewAdapter();
+            adapter = new TaskViewAdapter(new List<Task>(), this);
             recyclerView.SetAdapter(adapter);
         }
     }
