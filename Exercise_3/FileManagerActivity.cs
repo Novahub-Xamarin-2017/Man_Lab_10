@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Exercise_3.Adapters;
@@ -22,19 +17,17 @@ namespace Exercise_3
         private readonly List<string> videoExtensions = new List<string> {".mp3", ".mp4", ".flv", ".3gp"};
         private readonly List<string> imageExtensions = new List<string> {".jpg", ".png"};
 
-        private string path = File.Separator;
+        private string path;
 
-        private string root;
+        private FileAdapter adapter;
 
-        private static FileAdapter adapter;
-
-        private static readonly List<string> files = new List<string>();
+        private readonly List<string> files = new List<string>();
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.acticity_show_files);
-            UpdateListView(ListView, path);
+            UpdateListView(File.Separator);
         }
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
@@ -43,9 +36,7 @@ namespace Exercise_3
             var fileName = l.Adapter.GetItem(position).ToString();
             if (new File(fileName).IsDirectory)
             {
-                UpdateListView(l, fileName);
-                root = path;
-                path = fileName;
+                UpdateListView(fileName);
             }
             else
             {
@@ -68,18 +59,19 @@ namespace Exercise_3
             }
         }
 
-        private static void UpdateListView(ListView listview,string filePath)
+        private void UpdateListView(string filePath)
         {
+            path = filePath;
             files.Clear();
             var dir = new File(filePath);
             if (dir.CanRead())
             {
                 files.AddRange(dir.List().Select(file => Path.Combine(filePath, file)));
             }
-            if (listview.Adapter == null)
+            if (ListView.Adapter == null)
             {
                 adapter = new FileAdapter(files);
-                listview.Adapter = adapter;
+                ListView.Adapter = adapter;
             }
             else
             {
@@ -91,9 +83,7 @@ namespace Exercise_3
         {
             if (!path.Equals(File.Separator))
             {
-                UpdateListView(ListView, root);
-                path = root;
-                root = Path.GetPathRoot(root);
+                UpdateListView(Path.GetPathRoot(path));
                 return;
             }
             Finish();
