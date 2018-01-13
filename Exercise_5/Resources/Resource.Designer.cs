@@ -2904,14 +2904,17 @@ namespace Exercise_5
 			// aapt resource value: 0x7f080028
 			public const int bottom = 2131230760;
 			
-			// aapt resource value: 0x7f0800bf
-			public const int btnDaysLeft = 2131230911;
+			// aapt resource value: 0x7f0800bc
+			public const int btnClose = 2131230908;
 			
-			// aapt resource value: 0x7f0800c0
-			public const int btnResume = 2131230912;
+			// aapt resource value: 0x7f0800c3
+			public const int btnDaysLeft = 2131230915;
 			
-			// aapt resource value: 0x7f0800c1
-			public const int btnSetting = 2131230913;
+			// aapt resource value: 0x7f0800c4
+			public const int btnResume = 2131230916;
+			
+			// aapt resource value: 0x7f0800c5
+			public const int btnSetting = 2131230917;
 			
 			// aapt resource value: 0x7f08004b
 			public const int buttonPanel = 2131230795;
@@ -2919,8 +2922,8 @@ namespace Exercise_5
 			// aapt resource value: 0x7f0800a0
 			public const int cancel_action = 2131230880;
 			
-			// aapt resource value: 0x7f0800b3
-			public const int cardView1 = 2131230899;
+			// aapt resource value: 0x7f0800bd
+			public const int cardView1 = 2131230909;
 			
 			// aapt resource value: 0x7f080030
 			public const int center = 2131230768;
@@ -3057,20 +3060,20 @@ namespace Exercise_5
 			// aapt resource value: 0x7f0800b0
 			public const int line3 = 2131230896;
 			
+			// aapt resource value: 0x7f0800b3
+			public const int linearLayout1 = 2131230899;
+			
 			// aapt resource value: 0x7f0800b4
-			public const int linearLayout1 = 2131230900;
+			public const int linearLayout2 = 2131230900;
 			
-			// aapt resource value: 0x7f0800b6
-			public const int linearLayout2 = 2131230902;
+			// aapt resource value: 0x7f0800bf
+			public const int linearLayout3 = 2131230911;
 			
-			// aapt resource value: 0x7f0800b7
-			public const int linearLayout3 = 2131230903;
+			// aapt resource value: 0x7f0800c0
+			public const int linearLayout4 = 2131230912;
 			
-			// aapt resource value: 0x7f0800bb
-			public const int linearLayout4 = 2131230907;
-			
-			// aapt resource value: 0x7f0800be
-			public const int linearLayout5 = 2131230910;
+			// aapt resource value: 0x7f0800c2
+			public const int linearLayout5 = 2131230914;
 			
 			// aapt resource value: 0x7f08000f
 			public const int listMode = 2131230735;
@@ -3078,8 +3081,8 @@ namespace Exercise_5
 			// aapt resource value: 0x7f080048
 			public const int list_item = 2131230792;
 			
-			// aapt resource value: 0x7f0800c3
-			public const int masked = 2131230915;
+			// aapt resource value: 0x7f0800c7
+			public const int masked = 2131230919;
 			
 			// aapt resource value: 0x7f0800a2
 			public const int media_actions = 2131230882;
@@ -3336,6 +3339,9 @@ namespace Exercise_5
 			// aapt resource value: 0x7f080051
 			public const int textSpacerNoTitle = 2131230801;
 			
+			// aapt resource value: 0x7f0800b5
+			public const int textView1 = 2131230901;
+			
 			// aapt resource value: 0x7f080080
 			public const int text_input_password_toggle = 2131230848;
 			
@@ -3373,19 +3379,25 @@ namespace Exercise_5
 			public const int transition_scene_layoutid_cache = 2131230731;
 			
 			// aapt resource value: 0x7f0800b9
-			public const int tvExercise = 2131230905;
+			public const int tvDateEnd = 2131230905;
 			
-			// aapt resource value: 0x7f0800ba
-			public const int tvLesson = 2131230906;
+			// aapt resource value: 0x7f0800b7
+			public const int tvExercise = 2131230903;
 			
 			// aapt resource value: 0x7f0800b8
-			public const int tvSubject = 2131230904;
+			public const int tvLesson = 2131230904;
 			
-			// aapt resource value: 0x7f0800bc
-			public const int tvTimeEnd = 2131230908;
+			// aapt resource value: 0x7f0800bb
+			public const int tvStatus = 2131230907;
 			
-			// aapt resource value: 0x7f0800bd
-			public const int tvTimeLimited = 2131230909;
+			// aapt resource value: 0x7f0800b6
+			public const int tvSubject = 2131230902;
+			
+			// aapt resource value: 0x7f0800c1
+			public const int tvTimeEnd = 2131230913;
+			
+			// aapt resource value: 0x7f0800ba
+			public const int tvTimeLimited = 2131230906;
 			
 			// aapt resource value: 0x7f080009
 			public const int up = 2131230729;
@@ -3393,14 +3405,14 @@ namespace Exercise_5
 			// aapt resource value: 0x7f080018
 			public const int useLogo = 2131230744;
 			
-			// aapt resource value: 0x7f0800b5
-			public const int view = 2131230901;
+			// aapt resource value: 0x7f0800be
+			public const int view = 2131230910;
 			
 			// aapt resource value: 0x7f08000e
 			public const int view_offset_helper = 2131230734;
 			
-			// aapt resource value: 0x7f0800c2
-			public const int visible = 2131230914;
+			// aapt resource value: 0x7f0800c6
+			public const int visible = 2131230918;
 			
 			// aapt resource value: 0x7f080094
 			public const int volume_item_container = 2131230868;
@@ -3694,7 +3706,10 @@ namespace Exercise_5
 			public const int support_simple_spinner_dropdown_item = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int task_item = 2130903107;
+			public const int task_infomation = 2130903107;
+			
+			// aapt resource value: 0x7f030044
+			public const int task_item = 2130903108;
 			
 			static Layout()
 			{
@@ -3708,6 +3723,9 @@ namespace Exercise_5
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f090045
+			public const int Close = 2131296325;
 			
 			// aapt resource value: 0x7f090015
 			public const int abc_action_bar_home_description = 2131296277;
@@ -3814,6 +3832,15 @@ namespace Exercise_5
 			// aapt resource value: 0x7f090038
 			public const int character_counter_pattern = 2131296312;
 			
+			// aapt resource value: 0x7f090042
+			public const int dateEnd = 2131296322;
+			
+			// aapt resource value: 0x7f090040
+			public const int exercise = 2131296320;
+			
+			// aapt resource value: 0x7f090041
+			public const int lesson = 2131296321;
+			
 			// aapt resource value: 0x7f090000
 			public const int mr_button_content_description = 2131296256;
 			
@@ -3895,8 +3922,17 @@ namespace Exercise_5
 			// aapt resource value: 0x7f090028
 			public const int search_menu_title = 2131296296;
 			
+			// aapt resource value: 0x7f090044
+			public const int status = 2131296324;
+			
 			// aapt resource value: 0x7f090029
 			public const int status_bar_notification_info_overflow = 2131296297;
+			
+			// aapt resource value: 0x7f09003f
+			public const int subject = 2131296319;
+			
+			// aapt resource value: 0x7f090043
+			public const int timeLimited = 2131296323;
 			
 			static String()
 			{

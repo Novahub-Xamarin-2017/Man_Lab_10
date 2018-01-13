@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Runtime;
+using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -16,10 +12,10 @@ using Exercise_5.Models;
 
 namespace Exercise_5.Adapters
 {
-    public class TaskViewAdapter :RecyclerView.Adapter, IItemClickListener
+    public class TaskViewAdapter : RecyclerView.Adapter, IItemClickListener
     {
         public List<Task> Tasks;
-        private Context context;
+        private readonly Context context;
 
         public TaskViewAdapter(List<Task> tasks,Context context)
         {
@@ -30,7 +26,7 @@ namespace Exercise_5.Adapters
                     Subject = "CS-101 Python",
                     Exercise = "Exercise 6",
                     Lesson = "Data Structures",
-                    TimeEnd = new DateTime(2018, 1, 15),
+                    TimeEnd = new DateTime(2018, 1, 16),
                     TimeLimited = 45
                 },
                 new Task
@@ -90,12 +86,15 @@ namespace Exercise_5.Adapters
         }
 
         public override int ItemCount => Tasks.Count;
+
         public void OnClick(View itemView, int position, bool isLongClick)
         {
-            if (isLongClick)
-                Toast.MakeText(context, "Long click" + Tasks[position].Lesson, ToastLength.Short).Show();
-            else
-                Toast.MakeText(context, "Click" + Tasks[position].Lesson, ToastLength.Short).Show();
+            if (isLongClick) return;
+            var taskInfomationDialog = new TaskInfomationDialog();
+            var bundle = new Bundle();
+            bundle.PutParcelable("task", Tasks[position]);
+            taskInfomationDialog.Arguments = bundle;
+            taskInfomationDialog.Show(((FragmentActivity) context).FragmentManager.BeginTransaction(), "tag");
         }
     }
 }

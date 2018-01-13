@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Exercise_5</string>
+  <string name="subject">Subject :</string>
+  <string name="exercise">Exercise :</string>
+  <string name="lesson">Lesson :</string>
+  <string name="dateEnd">Date End :</string>
+  <string name="timeLimited">Time limited :</string>
+  <string name="status">Status :</string>
+  <string name="Close">Close</string>
 </resources>
