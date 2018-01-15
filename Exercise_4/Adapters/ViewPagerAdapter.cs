@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 
@@ -19,20 +20,28 @@ namespace Exercise_4.Adapters
     {
         private List<Fragment> fragments = new List<Fragment>();
 
-        private List<string> titles = new List<string>();
-
-        public ViewPagerAdapter(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-        }
+        private List<string> fragmentTitles = new List<string>();
 
         public ViewPagerAdapter(FragmentManager fm) : base(fm)
         {
         }
 
         public override int Count => fragments.Count;
+
         public override Fragment GetItem(int position)
         {
-            throw new NotImplementedException();
+            return fragments[position];
+        }
+
+        public override ICharSequence GetPageTitleFormatted(int position)
+        {
+            return new Java.Lang.String(fragmentTitles[position].ToLower());
+        }
+
+        public void AddFragment(Fragment fragment, string title)
+        {
+            fragments.Add(fragment);
+            fragmentTitles.Add(title);
         }
     }
 }

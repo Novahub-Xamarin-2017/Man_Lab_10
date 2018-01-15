@@ -16,7 +16,8 @@ namespace Exercise_4
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            var viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
+
+
         }
     }
 }
