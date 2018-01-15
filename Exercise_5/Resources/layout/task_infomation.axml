@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1"
+    p1:weightSum="7">
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1"
+        p1:weightSum="2"
+        p1:layout_margin="@dimen/marginMedium">
+        <TextView
+            p1:text="@string/subject"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/tvSubject"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1"
+        p1:weightSum="2"
+        p1:layout_margin="@dimen/marginMedium">
+        <TextView
+            p1:text="@string/exercise"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/tvExercise"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1"
+        p1:weightSum="2"
+        p1:layout_margin="@dimen/marginMedium">
+        <TextView
+            p1:text="@string/lesson"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/tvLesson"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1"
+        p1:weightSum="2"
+        p1:layout_margin="@dimen/marginMedium">
+        <TextView
+            p1:text="@string/dateEnd"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/tvDateEnd"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1"
+        p1:weightSum="2"
+        p1:layout_margin="@dimen/marginMedium">
+        <TextView
+            p1:text="@string/timeLimited"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/tvTimeLimited"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1"
+        p1:weightSum="2"
+        p1:layout_margin="@dimen/marginMedium">
+        <TextView
+            p1:text="@string/status"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/tvStatus"
+            p1:layout_weight="1"
+            p1:gravity="center_vertical" />
+    </LinearLayout>
+    <Button
+        p1:text="@string/Close"
+        p1:layout_width="match_parent"
+        p1:layout_height="0dp"
+        p1:id="@+id/btnClose"
+        p1:layout_weight="1"
+        p1:layout_margin="@dimen/marginMedium" />
+</LinearLayout>
