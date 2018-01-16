@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <android.support.v7.widget.CardView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardView1"
+        android:layout_margin="@dimen/marginSmall"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardElevation="@dimen/marginSmall"
+        app:cardCornerRadius="@dimen/marginSmall">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout1">
+            <ImageView
+                android:src="@drawable/call"
+                android:layout_width="@dimen/imageSize"
+                android:layout_height="@dimen/imageSize"
+                android:id="@+id/imageView1"
+                android:layout_margin="@dimen/marginSmall"
+                android:padding="@dimen/marginMedium" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout2"
+                android:weightSum="3">
+                <TextView
+                    android:text="Large Text"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/tvCaller"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/marginMedium"
+                    android:layout_marginRight="@dimen/marginMedium"
+                    android:layout_marginTop="@dimen/marginMedium" />
+                <TextView
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/tvTimeReceived"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/marginMedium"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/marginMedium"
+                    android:layout_marginRight="@dimen/marginMedium" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
