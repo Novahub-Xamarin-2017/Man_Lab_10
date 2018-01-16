@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <dimen name="marginSmall">5dp</dimen> 
+  <dimen name="imageSize">80dp</dimen>
+  <dimen name="marginMedium">20dp</dimen>
+  <dimen name="paddingSmall">8dp</dimen>
+</resources>
