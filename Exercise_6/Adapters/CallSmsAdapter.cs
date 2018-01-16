@@ -32,7 +32,6 @@ namespace Exercise_6.Adapters
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var viewType = holder.ItemViewType;
             switch (holder)
             {
                 case CallViewHolder callViewHolder:
@@ -41,8 +40,6 @@ namespace Exercise_6.Adapters
                 case SmsViewHolder smsViewHolder:
                     smsViewHolder.Sms = (Sms)callSmsObjects[position];
                     break;
-                default:
-                    return;
             }
         }
 
