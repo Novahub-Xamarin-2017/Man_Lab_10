@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
+﻿using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Widget;
 using Exercise_6.Models;
 
 namespace Exercise_6.Adapters
@@ -42,13 +33,13 @@ namespace Exercise_6.Adapters
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var viewType = holder.ItemViewType;
-            switch (viewType)
+            switch (holder)
             {
-                case CallType:
-                    ((CallViewHolder)holder).Call = (Call)callSmsObjects[position];
+                case CallViewHolder callViewHolder:
+                    callViewHolder.Call = (Call)callSmsObjects[position];
                     break;
-                case SmsType:
-                    ((SmsViewHolder)holder).Sms = (Sms)callSmsObjects[position];
+                case SmsViewHolder smsViewHolder:
+                    smsViewHolder.Sms = (Sms)callSmsObjects[position];
                     break;
                 default:
                     return;
@@ -57,22 +48,18 @@ namespace Exercise_6.Adapters
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            RecyclerView.ViewHolder viewHolder;
+            var layoutInflater = LayoutInflater.From(parent.Context);
             switch (viewType)
             {
                 case CallType:
-                    var callView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.call_item, parent, false);
-                    viewHolder = new CallViewHolder(callView);
-                    break;
+                    var callView = layoutInflater.Inflate(Resource.Layout.call_item, parent, false);
+                    return new CallViewHolder(callView);
                 case SmsType:
-                    var smsView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.sms_item, parent, false);
-                    viewHolder = new SmsViewHolder(smsView);
-                    break;
+                    var smsView = layoutInflater.Inflate(Resource.Layout.sms_item, parent, false);
+                    return new SmsViewHolder(smsView);
                 default:
-                    viewHolder = null;
-                    break;
+                    return null;
             }
-            return viewHolder;
         }
 
         public override int ItemCount => callSmsObjects.Count;
