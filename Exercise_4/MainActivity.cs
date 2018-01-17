@@ -1,9 +1,6 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Support.V4.App;
-using Android.Support.V4.View;
+using Exercise_4.Adapters;
 
 namespace Exercise_4
 {
@@ -12,12 +9,27 @@ namespace Exercise_4
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            
             base.OnCreate(savedInstanceState);
-
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            AddNewTab("Applications");
+            AddNewTab("Books");
+            AddNewTab("Games");
+        }
 
-
+        private void AddNewTab(string tabTitle)
+        {
+            var tab = ActionBar.NewTab();
+            tab.SetText(tabTitle);
+            tab.TabSelected += (s, e) =>
+            {
+                var fragmentTransaction = FragmentManager.BeginTransaction();
+                fragmentTransaction.Replace(Resource.Id.linearLayout, PlaceHolderFragment.GetInstance(tabTitle));
+                fragmentTransaction.Commit();
+            };
+            ActionBar.AddTab(tab);
         }
     }
 }
