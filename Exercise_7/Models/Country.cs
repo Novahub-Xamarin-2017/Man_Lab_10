@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Android.Runtime;
 
 namespace Exercise_7.Models
@@ -13,5 +15,10 @@ namespace Exercise_7.Models
         }
 
         public IntPtr Handle { get; }
+
+        public static List<Country> MatchFilter(List<Country> datas, string searchString)
+        {
+            return datas.Where(x => x.CountryName.ToLower().Contains(searchString.ToLower())).ToList();
+        }
     }
 }

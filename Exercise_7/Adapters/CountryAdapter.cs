@@ -19,13 +19,11 @@ namespace Exercise_7.Adapters
 
         private List<object> sectionLetterCountries;
 
-        private readonly Context context;
-
-        private readonly List<Country> countriesList;
+        private readonly List<Country> countries;
 
         private List<Country> originalDatas;
 
-        private static List<object> GetSectionLetterCountriesList(IEnumerable<Country> countries)
+        private static List<object> GetSectionLetterCountriesList(List<Country> countries)
         {
             var headerLetterCountries = new List<object>();
             headerLetterCountries.AddRange(countries.OrderBy(x => x.CountryName));
@@ -41,12 +39,10 @@ namespace Exercise_7.Adapters
             return headerLetterCountries;
         }
 
-        public CountryAdapter(IEnumerable<Country> countries, Context context)
+        public CountryAdapter(List<Country> countries)
         {
-            var enumerable = countries as IList<Country> ?? countries.ToList();
-            countriesList = enumerable.OrderBy(x => x.CountryName).ToList();
-            sectionLetterCountries = GetSectionLetterCountriesList(enumerable);
-            this.context = context;
+            this.countries = countries ?? new List<Country>();
+            sectionLetterCountries = GetSectionLetterCountriesList(this.countries);
             Filter = new CountryFilter(this);
         }
 
@@ -78,15 +74,14 @@ namespace Exercise_7.Adapters
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
+            var layoutInflater = LayoutInflater.From(parent.Context);
             switch (viewType)
             {
                 case TypeName:
-                    var countryNameView = LayoutInflater.From(parent.Context)
-                        .Inflate(Resource.Layout.country_item, parent, false);
+                    var countryNameView = layoutInflater.Inflate(Resource.Layout.country_item, parent, false);
                     return new CountryViewHolder(countryNameView);
                 case TypeLetter:
-                    var letterView = LayoutInflater.From(parent.Context)
-                        .Inflate(Resource.Layout.header_letter_item, parent, false);
+                    var letterView = layoutInflater.Inflate(Resource.Layout.header_letter_item, parent, false);
                     return new HeaderLetterViewHolder(letterView);
                 default:
                     return null;
@@ -97,7 +92,7 @@ namespace Exercise_7.Adapters
 
         public void OnClick(View itemView, int position)
         {
-            Toast.MakeText(context, ((Country) sectionLetterCountries[position]).CountryName, ToastLength.Short).Show();
+            Toast.MakeText(itemView.Context, ((Country) sectionLetterCountries[position]).CountryName, ToastLength.Short).Show();
         }
 
         public Filter Filter { get; }
@@ -115,15 +110,11 @@ namespace Exercise_7.Adapters
             {
                 var returnObject = new FilterResults();
                 var results = new List<Country>();
-                if (adapter.originalDatas == null)
-                {
-                    adapter.originalDatas = adapter.countriesList;
-                }
+                adapter.originalDatas = adapter.countries;
                 if (constraint == null) return returnObject;
                 if (adapter.originalDatas != null && adapter.originalDatas.Any())
                 {
-                    results.AddRange(adapter.originalDatas.Where(x =>
-                        x.CountryName.ToLower().Contains(constraint.ToString().ToLower())));
+                    results.AddRange(Country.MatchFilter(adapter.originalDatas, constraint.ToString()));
                 }
                 returnObject.Values = FromArray(results.Select(r => r.ToJavaObject()).ToArray());
                 returnObject.Count = results.Count;
@@ -137,7 +128,7 @@ namespace Exercise_7.Adapters
                 {
                     adapter.sectionLetterCountries =
                         GetSectionLetterCountriesList(values.ToArray<Object>()
-                            .Select(r => r.ToNetObject<Country>()));
+                            .Select(r => r.ToNetObject<Country>()).ToList());
                     adapter.NotifyDataSetChanged();
                     constraint.Dispose();
                     results.Dispose();

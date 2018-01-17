@@ -38,7 +38,6 @@ namespace Exercise_7
 
         private void Init()
         {
-            countries = new List<Country>();
             var stream = Application.Context.Assets.Open("Countries.json");
             using (var streamReader = new StreamReader(stream))
             {
@@ -46,7 +45,7 @@ namespace Exercise_7
                 countries =  JsonConvert.DeserializeObject<List<Country>>(content);
             }
             recyclerView.SetLayoutManager(new LinearLayoutManager(this));
-            adapter = new CountryAdapter(countries, this);
+            adapter = new CountryAdapter(countries);
             recyclerView.SetAdapter(adapter);
 
             searchView.QueryTextChange += (s, e) => adapter.Filter.InvokeFilter(e.NewText);
