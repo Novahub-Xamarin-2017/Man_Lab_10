@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="MyTheme" parent="@android:Theme.DeviceDefault.Light">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="colorPrimary">#E53935</item>
+    <item name="colorPrimaryDark">#D32F2F</item>
+  </style>
+  <style name="TabLayoutThemes" parent="Widget.Design.TabLayout">
+    <item name="tabIndicatorColor">#FFFFFF</item> 
+    <item name="tabIndicatorHeight">2dp</item>
+    <item name="tabSelectedTextColor">#212121</item>
+  </style>
+</resources>
