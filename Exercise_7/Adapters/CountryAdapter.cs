@@ -88,6 +88,12 @@ namespace Exercise_7.Adapters
             }
         }
 
+        public void SetFilter(List<Country> countries)
+        {
+            sectionLetterCountries = GetSectionLetterCountriesList(countries);
+            NotifyDataSetChanged();
+        }
+
         public override int ItemCount => sectionLetterCountries.Count;
 
         public void OnClick(View itemView, int position)
@@ -126,10 +132,7 @@ namespace Exercise_7.Adapters
             {
                 using (var values = results.Values)
                 {
-                    adapter.sectionLetterCountries =
-                        GetSectionLetterCountriesList(values.ToArray<Object>()
-                            .Select(r => r.ToNetObject<Country>()).ToList());
-                    adapter.NotifyDataSetChanged();
+                    adapter.SetFilter(values.ToArray<Object>().Select(r => r.ToNetObject<Country>()).ToList());
                     constraint.Dispose();
                     results.Dispose();
                 }
