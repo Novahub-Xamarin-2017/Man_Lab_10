@@ -15,7 +15,7 @@ namespace Exercise_4.Adapters
 
         [InjectView(Resource.Id.listView)] private ListView listView;
 
-        private List<string> datas = new List<string>();
+        private List<string> items = new List<string>();
 
         private PlaceHolderFragment()
         {
@@ -24,9 +24,9 @@ namespace Exercise_4.Adapters
         public static PlaceHolderFragment GetInstance(string name)
         {
             var fragment = new PlaceHolderFragment();
-            var args = new Bundle();
-            args.PutString("data", name);
-            fragment.Arguments = args;
+            var bundle = new Bundle();
+            bundle.PutString("data", name);
+            fragment.Arguments = bundle;
             return fragment;
         }
 
@@ -41,12 +41,12 @@ namespace Exercise_4.Adapters
         private void Init(ViewGroup container)
         {
             var dataFileName = Arguments.GetString("data");
-            datas = ReadDatas(dataFileName);
-            var arrayAdapter = new ArrayAdapter(container.Context, Android.Resource.Layout.SimpleListItem1, datas);
+            items = ReadDatas(dataFileName);
+            var arrayAdapter = new ArrayAdapter(container.Context, Android.Resource.Layout.SimpleListItem1, items);
             listView.Adapter = arrayAdapter;
             listView.ItemClick += (s, e) =>
             {
-                Toast.MakeText(container.Context, $"Click {datas[e.Position]}", ToastLength.Short).Show();
+                Toast.MakeText(container.Context, $"Click {items[e.Position]}", ToastLength.Short).Show();
             };
         }
 
