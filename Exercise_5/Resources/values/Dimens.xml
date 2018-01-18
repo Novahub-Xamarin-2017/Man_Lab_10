@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <dimen name="carddViewHeight">150dp</dimen>
+  <dimen name="cardConnerRadius">10dp</dimen>
+  <dimen name="cardElevation">10dp</dimen>
+  <dimen name="viewWidth">10dp</dimen>
+  <dimen name="marginSmall">5dp</dimen>
+  <dimen name="marginMedium">10dp</dimen>
+</resources>

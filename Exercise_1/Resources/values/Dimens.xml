@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<resources>
+  <dimen name="marginSmall">5dp</dimen>
+  <dimen name="imageSize">60dp</dimen>
+  <dimen name="cardviewConnerRadius">5dp</dimen>
+  <dimen name="carviewElevation">5dp</dimen>
+</resources>
